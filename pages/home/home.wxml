@@ -1,25 +1,22 @@
 <view class="container">
-  <view class="tabs">
-    <view class="tab-item" wx:for="{{tabs}}" wx:key="index"
-          bind:tap="handleTabChange"
-          data-index="{{index}}"
-    >
-      <view class="tab-label {{currentTabIndex === index ? 'active-tab':''}}">
-        {{item}}
+  <i-tabs tabs="{{tabs}}" bind:change="handleTabChange">
+    <view slot="extend">
+      <view class="category">
+        <swiper style="height:150rpx" display-multiple-items="{{2}}"
+                next-margin="60rpx">
+          <swiper-item wx:for="{{categoryList}}"
+                       wx:key="index" bind:tap="handleCategoryChange"
+                       data-id="{{index}}">
+            <view class="category-swiper-item">
+              <text class="category-name">{{item.name}}</text>
+            </view>
+          </swiper-item>
+        </swiper>
       </view>
-      <!--逻辑控制-->
-      <view class="divider" wx:if="{{currentTabIndex === index }}"></view>
     </view>
-  </view>
-  <view class="category">
-    <swiper style="height:150rpx" display-multiple-items="{{2}}" next-margin="60rpx">
-      <swiper-item wx:for="{{categoryList}}" wx:key="index" bind:tap="handleCategoryChange"
-                   data-id="{{index}}">
-        <view class="category-swiper-item">
-          <text class="category-name">{{item.name}}</text>
-        </view>
-      </swiper-item>
-    </swiper>
-  </view>
-  <view class="tab-panel"></view>
+    <view slot="panel">
+      1111111
+    </view>
+  </i-tabs>
+
 </view>

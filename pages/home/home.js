@@ -21,10 +21,7 @@ Page({
 	
 	},
 	handleTabChange: function (event) {
-		const index = event.currentTarget.dataset.index
-		this.setData({
-			currentTabIndex: index
-		})
+		console.log(event)
 	},
 	handleCategoryChange: function (event) {
 		const id = event.currentTarget.dataset.id
