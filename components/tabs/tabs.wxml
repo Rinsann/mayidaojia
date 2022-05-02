@@ -1,3 +1,5 @@
+<wxs src="../../common/wxs/touchMove.wxs" module="touch"></wxs>
+
 <view class="container">
   <view class="tabs">
     <view class="tab-item" wx:for="{{tabs}}" wx:key="index"
@@ -12,7 +14,7 @@
     </view>
   </view>
   <slot name="extend"></slot>
-  <view class="tab-panel" bind:touchstart="handleTouchstart" bind:touchend="handleTouchend">
+  <view class="tab-panel" bind:touchstart="{{touch.handleTouchstart}}" bind:touchend="{{touch.handleTouchend}}">
     <!-- 内容不确定-->
     <!-- 样式不确定-->
     <!-- 插槽 slot-->
