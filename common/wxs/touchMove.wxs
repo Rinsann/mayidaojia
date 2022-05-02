@@ -1,15 +1,25 @@
 // 1.只能使用 ES5语法 2.wx. api不能用
 
 var touchStartX
+var touchStartY
 
 function handleTouchstart(event) {
-	console.log(event)
 	//	数据绑定，记录触摸开始的x轴的位置
 	touchStartX = event.changedTouches[0].clientX
+	touchStartY = event.changedTouches[0].clientY
 }
 
 function handleTouchend(event, ownerInstance) {
 	var touchEndX = event.changedTouches[0].clientX
+	var touchEndY = event.changedTouches[0].clientY
+	// Y 轴
+	var distanceY = touchEndY - touchStartY;
+	if (distanceY > 0 && distanceY > 100) {
+		return
+	}
+	if (distanceY < 0 && distanceY < -100) {
+		return
+	}
 	// 负数代表手指向左滑动了。正数代表手指向右滑动了
 	var distance = touchEndX - touchStartX;
 	//  -1：后退（向右滑动)；0：不动；1：前进（向左滑动)
@@ -31,6 +41,5 @@ function handleTouchend(event, ownerInstance) {
 }
 
 module.exports = {
-	handleTouchstart: handleTouchstart,
-	handleTouchend: handleTouchend
+	handleTouchstart: handleTouchstart, handleTouchend: handleTouchend
 }

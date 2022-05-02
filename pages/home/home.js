@@ -21,7 +21,6 @@ Page({
 	
 	},
 	handleTabChange: function (event) {
-		console.log(event)
 	},
 	handleCategoryChange: function (event) {
 		const id = event.currentTarget.dataset.id
