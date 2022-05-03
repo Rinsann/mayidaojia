@@ -6,6 +6,7 @@
   url('//at.alicdn.com/t/font_2324166_ma06pokgpf.ttf?t=1619610763137') format('truetype'), /* chrome, firefox, opera, Safari, Android, iOS 4.2+ */ url('//at.alicdn.com/t/font_2324166_ma06pokgpf.svg?t=1619610763137#iconfont') format('svg'); /* iOS 4.1- */
 }
 
+/*noinspection CssNoGenericFontName*/
 .iconfont {
   font-family: "iconfont" !important;
   font-size: 16px;
@@ -14,6 +15,134 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
-.icon-tag:before {
+.icon-biaoqian:before {
   content: "\e634";
+}
+
+.icon-star:before {
+  content: "\e68a";
+}
+
+.icon-tuipiao:before {
+  content: "\e8ba";
+}
+
+.icon-close:before {
+  content: "\e66a";
+}
+
+.icon-picture:before {
+  content: "\e67c";
+}
+
+.icon-add-circle:before {
+  content: "\e666";
+}
+
+.icon-telephone:before {
+  content: "\e681";
+}
+
+.icon-map:before {
+  content: "\e678";
+}
+
+.icon-edit:before {
+  content: "\e66e";
+}
+
+.icon-file-common:before {
+  content: "\e671";
+}
+
+.icon-menu:before {
+  content: "\e677";
+}
+
+.icon-time:before {
+  content: "\e680";
+}
+
+.icon-upload:before {
+  content: "\e682";
+}
+
+.icon-history:before {
+  content: "\e674";
+}
+
+.icon-comment:before {
+  content: "\e668";
+}
+
+.icon-complete:before {
+  content: "\e669";
+}
+
+.icon-file-open:before {
+  content: "\e670";
+}
+
+.icon-operation:before {
+  content: "\e679";
+}
+
+.icon-error:before {
+  content: "\e66f";
+}
+
+.icon-add:before {
+  content: "\e664";
+}
+
+.icon-select-bold:before {
+  content: "\e687";
+}
+
+.icon-arrow-up-bold:before {
+  content: "\e685";
+}
+
+.icon-arrow-down-bold:before {
+  content: "\e686";
+}
+
+.icon-arrow-down:before {
+  content: "\e665";
+}
+
+.icon-rili:before {
+  content: "\e61d";
+}
+
+.icon-bianji:before {
+  content: "\e627";
+}
+
+.icon-faxian:before {
+  content: "\e628";
+}
+
+.icon-wode:before {
+  content: "\e62a";
+}
+
+.icon-xiaoxi:before {
+  content: "\e62b";
+}
+
+.icon-bianji-copy-copy:before {
+  content: "\e62d";
+}
+
+.icon-faxian-copy:before {
+  content: "\e62e";
+}
+
+.icon-wode-copy:before {
+  content: "\e62f";
+}
+
+.icon-xiaoxi-copy:before {
+  content: "\e630";
 }

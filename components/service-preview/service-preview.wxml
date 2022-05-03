@@ -11,9 +11,10 @@
         {{service.title}}
       </view>
       <view class="category">
-        <view class="iconfont .icon-tag"
-              style="font-size:40rpx;color:#FBC02D;margin-right:20rpx;"></view>
-        {{service.category.name}}
+        <i-icon name="biaoqian" color="#f27013"></i-icon>
+        <view class="category-text">
+          {{service.category.name}}
+        </view>
       </view>
     </view>
     <view class="row">
@@ -25,7 +26,7 @@
           {{service.publisher.nickname}}
         </view>
       </view>
-      <view class="score"></view>
+      <view class="score">★ {{service.score}}</view>
     </view>
     <view class="row">
       <view class="create-time">
@@ -34,10 +35,10 @@
     </view>
     <view class="row row-last">
       <view class="price">
-        <text class="label">￥</text> {{service.price}}
+        <text class="label">￥</text>{{service.price}}
       </view>
       <view class="sales">
-        已售{{service.sales_volume}}
+        已售 {{service.sales_volume}}
       </view>
     </view>
   </view>
