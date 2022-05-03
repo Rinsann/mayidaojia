@@ -1,4 +1,5 @@
 import Service from '../../model/service'
+import Category from '../../model/category'
 
 const service = new Service()
 
@@ -6,29 +7,24 @@ Page({
 	data: {
 		tabs: ['全部服务', '在提供', '正在找'],
 		currentTabIndex: 0,
-		categoryList: [
-			{
-				'id': 1,
-				'name': '保洁'
-			},
-			{
-				'id': 2,
-				'name': '汽修'
-			},
-			{
-				'id': 3,
-				'name': '疏通'
-			},
-		]
+		categoryList: []
 	},
 	onLoad: function (options) {
 		this._getServiceList()
 		//	总的入口，执行函数1 执行函数2
+		this._getCategoryList()
 	},
 	
 	async _getServiceList() {
 		const serviceList = await service.getServiceList(1, 10)
 		console.log(serviceList)
+	},
+	
+	async _getCategoryList() {
+		const categoryList = await Category.getCategoryListWithAll();
+		this.setData({
+			categoryList
+		})
 	},
 	
 	handleTabChange: function (event) {
