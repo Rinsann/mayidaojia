@@ -26,8 +26,9 @@ Page({
 		//	总的入口，执行函数1 执行函数2
 	},
 	
-	_getServiceList() {
-		service.getServiceList(1, 10)
+	async _getServiceList() {
+		const serviceList = await service.getServiceList(1, 10)
+		console.log(serviceList)
 	},
 	
 	handleTabChange: function (event) {
