@@ -18,6 +18,9 @@ Page({
 	async _getServiceList() {
 		const serviceList = await service.getServiceList(1, 10)
 		console.log(serviceList)
+		this.setData({
+			serviceList: serviceList.data
+		})
 	},
 	
 	async _getCategoryList() {
