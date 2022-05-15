@@ -6,18 +6,18 @@ const service = new Service()
 Page({
 	data: {
 		tabs: ['全部服务', '在提供', '正在找'],
-		currentTabIndex: 0,
-		categoryList: []
+		categoryList: [],
+		tabIndex: 0,
+		categoryId: 0
 	},
 	onLoad: function (options) {
 		this._getServiceList()
 		//	总的入口，执行函数1 执行函数2
 		this._getCategoryList()
 	},
-
+	
 	async _getServiceList() {
-		const serviceList = await service.getServiceList()
-		console.log(serviceList)
+		const serviceList = await service.reset().getServiceList(this.categoryId, this.data.tabIndex)
 		this.setData({
 			serviceList: serviceList
 		})
@@ -31,9 +31,13 @@ Page({
 	},
 	
 	handleTabChange: function (event) {
+		this.data.tabIndex = event.detail.index
+		this._getServiceList()
 	},
 	handleCategoryChange: function (event) {
-		const id = event.currentTarget.dataset.id
+		if (this.data.categoryId === event.currentTarget.dataset.id) {return}
+		this.data.categoryId = event.currentTarget.dataset.id
+		this._getCategoryList()
 	},
 	
 	/**
@@ -52,8 +56,8 @@ Page({
 	 */
 	async onReachBottom() {
 		// 获取下一页的数据并且和当前的数据合并
-		if (!service.hasMoreData) {return}
-		const serviceList = await service.getServiceList()
+		if (!sesrvice.hasMoreData) {return}
+		const serviceList = await service.getServiceList(this.categoryId, this.data.tabIndex)
 		this.setData({
 			serviceList
 		})
