@@ -22,6 +22,7 @@
       <view wx:for="{{serviceList}}" wx:key="index">
         <i-service-preview service="{{item}}"></i-service-preview>
       </view>
+      <i-show-status show="{{serviceList.length < 1}}" content="暂时还没有任何服务" top="220"></i-show-status>
     </view>
   </i-tabs>
 
