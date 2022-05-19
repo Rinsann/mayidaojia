@@ -25,7 +25,7 @@ Page({
 	async _getServiceList() {
 		const serviceList = await service.reset().getServiceList(this.data.categoryId, this.data.tabIndex)
 		this.setData({
-			serviceList: []
+			serviceList: serviceList
 		})
 	},
 	

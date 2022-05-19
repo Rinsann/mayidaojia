@@ -45,16 +45,5 @@ Component({
 			}
 			this.handleTabChange(customEvent)
 		},
-		
-		handleTouchstart: function (event) {
-			console.log(event)
-			//	数据绑定，记录触摸开始的x轴的位置
-		},
-		handleTouchend: function (event) {
-			console.log(event)
-			//	把结束时x轴的位置 - 触摸开始时的位置
-			//	做判断，判断是往左划还是往右划
-			//	做数据绑定，改变currentTabIndex的值
-		},
 	}
 });
