@@ -9,12 +9,17 @@ Page({
 		tabs: ['全部服务', '在提供', '正在找'],
 		categoryList: [],
 		tabIndex: 0,
-		categoryId: 0
+		categoryId: 0,
+		loading: true
 	},
-	onLoad: function (options) {
-		this._getServiceList()
+	onLoad: async function (options) {
+		
+		await this._getServiceList()
 		//	总的入口，执行函数1 执行函数2
-		this._getCategoryList()
+		await this._getCategoryList()
+		this.setData({
+			loading: false
+		})
 	},
 	
 	async _getServiceList() {
