@@ -1,3 +1,5 @@
+import {throttle} from '../../utils/utils'
+
 Component({
 	options: {
 		multipleSlots: true
@@ -18,15 +20,14 @@ Component({
 		// 父组件（页面）通过属性给自定义组件传递参数
 		// 自定义组件通过自定义事件给父组件(页面)传递参数
 		
-		handleTabChange: function (event) {
+		handleTabChange: throttle(function (event) {
 			const index = event.currentTarget.dataset.index
 			if (index === this.data.currentTabIndex) {return}
 			this.setData({
 				currentTabIndex: index
 			})
-			
 			this.triggerEvent('change', {index})
-		},
+		}),
 		
 		handleTouchMove(event) {
 			const direction = event.direction

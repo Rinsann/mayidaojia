@@ -16,7 +16,7 @@
     </view>
     <view slot="panel">
       <view wx:for="{{serviceList}}" wx:key="index">
-          <i-service-preview service="{{item}}"></i-service-preview>
+        <i-service-preview service="{{item}}"></i-service-preview>
       </view>
     </view>
   </i-tabs>

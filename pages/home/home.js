@@ -1,5 +1,6 @@
 import Service from '../../model/service'
 import Category from '../../model/category'
+import {throttle} from '../../utils/utils'
 
 const service = new Service()
 
@@ -17,7 +18,7 @@ Page({
 	},
 	
 	async _getServiceList() {
-		const serviceList = await service.reset().getServiceList(this.categoryId, this.data.tabIndex)
+		const serviceList = await service.reset().getServiceList(this.data.categoryId, this.data.tabIndex)
 		this.setData({
 			serviceList: serviceList
 		})
@@ -30,15 +31,18 @@ Page({
 		})
 	},
 	
-	handleTabChange: function (event) {
+	handleTabChange: throttle(function (event) {
 		this.data.tabIndex = event.detail.index
 		this._getServiceList()
-	},
-	handleCategoryChange: function (event) {
-		if (this.data.categoryId === event.currentTarget.dataset.id) {return}
+	}),
+	
+	handleCategoryChange: throttle(function (event) {
+		if (this.data.categoryId === event.currentTarget.dataset.id) {
+			return
+		}
 		this.data.categoryId = event.currentTarget.dataset.id
-		this._getCategoryList()
-	},
+		this._getServiceList()
+	}),
 	
 	/**
 	 * 下拉刷新
@@ -56,7 +60,7 @@ Page({
 	 */
 	async onReachBottom() {
 		// 获取下一页的数据并且和当前的数据合并
-		if (!sesrvice.hasMoreData) {return}
+		if (!service.hasMoreData) {return}
 		const serviceList = await service.getServiceList(this.categoryId, this.data.tabIndex)
 		this.setData({
 			serviceList
