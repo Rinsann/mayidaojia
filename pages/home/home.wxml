@@ -4,6 +4,11 @@
   <i-tabs tabs="{{tabs}}" bind:change="handleTabChange">
     <view slot="extend">
       <view class="category">
+        <!--
+            此行代码用于优化微信官方骨架屏与swiper不够兼容的问题
+            先注释swiper代码，使用 <image style="width:98%;height:150rpx;margin:0 auto;"></image> 生成骨架屏，
+            生成成功后在替换回swiper
+        -->
         <swiper style="height:150rpx" display-multiple-items="{{2}}" next-margin="60rpx">
           <swiper-item wx:for="{{categoryList}}" wx:key="index" bind:tap="handleCategoryChange" data-id="{{index}}">
             <view class="category-swiper-item">
