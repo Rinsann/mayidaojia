@@ -8,7 +8,7 @@ class Service {
 	count = 4
 	data = []
 	hasMoreData = true
-
+	
 	
 	/**
 	 * 分页获取服务列表
@@ -31,6 +31,12 @@ class Service {
 		this.hasMoreData = !(this.page === serviceList.last_page)
 		this.page++
 		return this.data
+	}
+	
+	static getServiceByID(serviceId) {
+		return Http.request({
+			url: `v1/service/${serviceId}`
+		})
 	}
 	
 	reset() {

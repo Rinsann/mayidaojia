@@ -49,6 +49,16 @@ Page({
 		this._getServiceList()
 	}),
 	
+	handleSelectService(event) {
+		console.log(event)
+		const service = event.currentTarget.dataset.service
+		//	1.缓存，存在数据不一致的问题
+		//	2.只传递一个 id，然后跳转的目标页面根据这个 id 发起一个请求获取数据
+		wx.navigateTo({
+			url: '/pages/service-detail/service-detail?service_id=' + service.id
+		})
+	},
+	
 	/**
 	 * 下拉刷新
 	 */

@@ -3,7 +3,8 @@
     "pages/home/home",
     "pages/message/message",
     "pages/my/my",
-    "pages/publish/publish"
+    "pages/publish/publish",
+    "pages/service-detail/service-detail"
   ],
   "window": {
     "backgroundTextStyle": "dark",
