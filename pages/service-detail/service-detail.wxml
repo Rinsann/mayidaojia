@@ -1,3 +1,5 @@
+<wxs src="/common/wxs/status-text.wxs" module="statusText"></wxs>
+
 <view class="container">
   <view class="inner-container">
     <view class="service-info">
@@ -43,7 +45,7 @@
       <view class="service-rating-title">历史评价</view>
       <view wx:if="{{ratingList.length}}" class="service-rating-list">
         <view class="service-rating-item" wx:for="{{ratingList}}" wx:key="index">
-<!--          <i-service-rating rating="{{item}}"></i-service-rating>-->
+          <!--          <i-service-rating rating="{{item}}"></i-service-rating>-->
         </view>
       </view>
       <view wx:else>
@@ -52,14 +54,5 @@
     </view>
   </view>
   <view class="action-bar">
-    <!--<i-publisher-action wx:if="{{isPublisher}}" service="{{service}}"
-                        bind:update="handleUpdateStatus"
-                        bind:edit="handleEditService"
-    ></i-publisher-action>
-    <i-consumer-action wx:if="{{!isPublisher}}" service="{{service}}"
-                       bind:chat="handleChat"
-                       bind:order="handleOrder"
-    ></i-consumer-action>
-    <i-safe-area area="bottom"></i-safe-area>-->
   </view>
 </view>

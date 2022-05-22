@@ -1,19 +1,32 @@
-import service from '../../model/service'
 import Service from '../../model/service'
+import User from '../../model/user'
+
 
 Page({
 	data: {
 		service: null,
-		serviceId: null
+		serviceId: null,
+		isPublisher: false
 	},
-	onLoad: function (options) {
+	onLoad: async function (options) {
 		this.data.serviceId = options.service_id
-		this._getService()
+		await this._getService()
+		this._checkRole()
 	},
+	
 	async _getService() {
 		const service = await Service.getServiceByID(this.data.serviceId)
 		this.setData({
 			service
 		})
+	},
+	
+	_checkRole() {
+		const userInfo = User.getUserInfoByLocal()
+		if (userInfo && userInfo.id === this.data.service.publisher.id) {
+			this.setData({
+				isPublisher: true
+			})
+		}
 	}
 });
