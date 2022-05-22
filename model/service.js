@@ -1,14 +1,10 @@
 import Http from '../utils/http'
+import Base from './base'
 
-class Service {
+class Service extends Base {
 	// 一个实例对象，它是有状态的
 	// 调用静态方法本质上就是调用类方法
 	// 实例化调用，本质上在调用对象的方法
-	page = 1
-	count = 4
-	data = []
-	hasMoreData = true
-	
 	
 	/**
 	 * 分页获取服务列表
@@ -39,13 +35,6 @@ class Service {
 		})
 	}
 	
-	reset() {
-		this.page = 1
-		this.count = 4
-		this.data = []
-		this.hasMoreData = true
-		return this
-	}
 }
 
 export default Service

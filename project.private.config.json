@@ -14,6 +14,20 @@
           "query": "",
           "launchMode": "default",
           "scene": null
+        },
+        {
+          "name": "服务详情",
+          "pathName": "pages/service-detail/service-detail",
+          "query": "service_id=432",
+          "launchMode": "default",
+          "scene": null
+        },
+        {
+          "name": "",
+          "pathName": "pages/service-detail/service-detail",
+          "query": "service_id=14",
+          "launchMode": "default",
+          "scene": null
         }
       ]
     }
