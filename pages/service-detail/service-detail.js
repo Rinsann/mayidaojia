@@ -3,6 +3,8 @@ import User from '../../model/user'
 import Rating from '../../model/rating'
 import serviceType from '../../enum/service-type'
 import serviceStatus from '../../enum/service-status'
+import {getEventParam} from '../../utils/utils'
+import serviceAction from '../../enum/service-action'
 
 const rating = new Rating()
 
@@ -36,11 +38,26 @@ Page({
 		})
 	},
 
-	handleUpdate: function (event) {
-		console.log(1)
+	handleUpdateStatus: async function (event) {
+		console.log(event)
+		const action = getEventParam(event, 'action')
+		const content = this._generateModelContent(action)
+		const res = await wx.showModal({
+			title: '注意',
+			content,
+			showCancel: true
+		})
+
+		if (!res.confirm) {
+			return
+		}
+
+		await Service.updateServiceStatus(this.serviceId, action)
+		await this._getService()
+		console.log(res)
 	},
 
-	handleEdit: function () {
+	handleEditService: function () {
 		console.log(2)
 
 	},
@@ -53,6 +70,26 @@ Page({
 	handleOrder: function () {
 		console.log(4)
 
+	},
+
+	_generateModelContent (action) {
+		let content
+		switch (action) {
+			case serviceAction.PAUSE:
+				content = '暂停后服务状态变为"待发布，' +
+					'可在个人中心操作重新发布上线，' +
+					'是否确认暂停发布该服务'
+				break;
+			case serviceAction.PUBLISH:
+				content = '发布后即可在广场首页中被浏览到，是否确认发布？'
+				break;
+			case serviceAction.CANCEL:
+				content = '取消后不可回复，需要重新发布并提交审核；' +
+					'已关联该服务的订单且订单状态正在进行中的，仍需正常履约；' +
+					'是否确认取消该服务？'
+				break;
+		}
+		return content
 	},
 
 	_checkRole () {

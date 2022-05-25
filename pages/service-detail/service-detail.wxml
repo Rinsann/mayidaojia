@@ -57,8 +57,8 @@
   <view class="action-bar">
     <i-publisher-action wx:if="{{isPublisher}}"
                         service="{{service}}"
-                        bind:update="handleUpdate"
-                        bind:edit="handleEdit"
+                        bind:update="handleUpdateStatus"
+                        bind:edit="handleEditService"
     ></i-publisher-action>
     <i-consumer-action wx:if="{{!isPublisher}}"
                        service="{{service}}"

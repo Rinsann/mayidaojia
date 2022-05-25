@@ -5,13 +5,13 @@ class Service extends Base {
 	// 一个实例对象，它是有状态的
 	// 调用静态方法本质上就是调用类方法
 	// 实例化调用，本质上在调用对象的方法
-	
+
 	/**
 	 * 分页获取服务列表
 	 * @param category_id 分类 id
 	 * @param type 服务类型
 	 */
-	async getServiceList(category_id = null, type = null) {
+	async getServiceList (category_id = null, type = null) {
 		if (!this.hasMoreData) {
 			return this.data
 		}
@@ -28,13 +28,22 @@ class Service extends Base {
 		this.page++
 		return this.data
 	}
-	
-	static getServiceByID(serviceId) {
+
+	static getServiceByID (serviceId) {
 		return Http.request({
 			url: `v1/service/${serviceId}`
 		})
 	}
-	
+
+	static updateServiceStatus (serviceId, action) {
+		return Http.request({
+			url: `v1/service/${serviceId}`,
+			data: {
+				action
+			},
+			method: 'POST'
+		})
+	}
 }
 
 export default Service

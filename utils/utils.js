@@ -35,4 +35,14 @@ function getDataSet (event, target) {
 	return event.currentTarget.dataset[target]
 }
 
-export {throttle,getDataSet}
+/**
+ * 获取自定义组件事件参数
+ * @param {Object} event
+ * @param {String} target
+ * @returns {*}
+ */
+function getEventParam (event, target) {
+	return event.detail[target]
+}
+
+export {throttle, getDataSet, getEventParam}
