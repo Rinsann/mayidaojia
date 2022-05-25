@@ -56,10 +56,23 @@
   </view>
   <view class="action-bar">
     <view class="action-bar-item">
-      <button>按钮 1</button>
-      <button>按钮 2</button>
-      <button>按钮 3</button>
+      <block wx:if="{{isPublisher}}">
+        <button
+          wx:if="{{service.status !== serviceStatusEnum.CANCELED && service.status !== serviceStatus.OFF_SHELVES}}">
+          取消服务
+        </button>
+        <button
+          wx:if="{{service.status !== serviceStatusEnum.CANCELED && service.status !== serviceStatus.OFF_SHELVES}}">
+          修改服务
+        </button>
+        <button wx:if="{{service.status=== serviceStatusEnum.PUBLISHED}}">暂停服务</button>
+        <button wx:if="{{service.status=== serviceStatusEnum.UNPUBLISHED}}">发布</button>
+      </block>
+      <block wx:if="{{!isPublisher}}">
+        <button>联系对方</button>
+        <button wx:if="{{service.type === serviceTypeEnum.PROVIDE}}">立即预约</button>
+      </block>
     </view>
-    <i-safe-area area="buttom"></i-safe-area>
+    <i-safe-area area="bottom"></i-safe-area>
   </view>
 </view>
