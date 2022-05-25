@@ -11,3 +11,5 @@ const serviceAction = {
 	PAUSE: 2,
 	CANCEL: 3,
 }
+
+export default serviceAction
