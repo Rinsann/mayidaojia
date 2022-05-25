@@ -1,9 +1,10 @@
 import serviceStatus from '../../../../enum/service-status'
 import serviceAction from '../../../../enum/service-action'
 import behavior from '../behavior'
+import {getDataSet} from '../../../../utils/utils'
 
 Component({
-	behaviors:[behavior],
+	behaviors: [behavior],
 	properties: {},
 	data: {
 		serviceStatusEnum: serviceStatus,
@@ -11,10 +12,11 @@ Component({
 	},
 	methods: {
 		handleUpdateStatus: function (event) {
-			console.log(event)
+			const action = getDataSet(event, 'action')
+			this.triggerEvent('update', {action})
 		},
 		handleEditService: function (event) {
-			console.log(event)
+			this.triggerEvent('edit')
 		}
 	}
 });

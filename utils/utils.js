@@ -4,7 +4,7 @@
  * @param {Number} duration 距离上次执行超过多少毫秒才会执行被节流的函数
  * @returns
  */
-function throttle(callback, duration = 500) {
+function throttle (callback, duration = 500) {
 	// 最后执行函数时的时间戳
 	let lastTime = 0
 	// 闭包、this指向
@@ -26,4 +26,13 @@ function throttle(callback, duration = 500) {
 
 // 防抖
 
-export {throttle}
+/**
+ * 获取事件回调参数的自定义属性
+ * @param {Object} event
+ * @param {String} target
+ */
+function getDataSet (event, target) {
+	return event.currentTarget.dataset[target]
+}
+
+export {throttle,getDataSet}

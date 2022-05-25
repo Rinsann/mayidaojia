@@ -36,6 +36,25 @@ Page({
 		})
 	},
 
+	handleUpdate: function (event) {
+		console.log(1)
+	},
+
+	handleEdit: function () {
+		console.log(2)
+
+	},
+
+	handleChat: function () {
+		console.log(3)
+
+	},
+
+	handleOrder: function () {
+		console.log(4)
+
+	},
+
 	_checkRole () {
 		const userInfo = User.getUserInfoByLocal()
 		if (userInfo && userInfo.id === this.data.service.publisher.id) {

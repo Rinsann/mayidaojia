@@ -9,9 +9,10 @@ Component({
 	},
 	methods: {
 		handleChat: function (event) {
+			this.triggerEvent('chat')
 		},
 		handleOrder: function (event) {
-
+			this.triggerEvent('order')
 		}
 	}
 });
