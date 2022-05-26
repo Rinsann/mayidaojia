@@ -20,6 +20,8 @@ Page({
 		try {
 			await User.login()
 			await User.updateUserInfo(res.userInfo)
+			const events = this.getOpenerEventChannel()
+			events.emit('login')
 			wx.navigateBack()
 		} catch (e) {
 			wx.showModal({
@@ -33,6 +35,8 @@ Page({
 	},
 
 	handleToHome: function () {
-
+		wx.switchTab({
+			url: '/pages/home/home'
+		})
 	},
 });
