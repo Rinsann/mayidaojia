@@ -1,4 +1,4 @@
-/*@import "./service-detail.skeleton.wxss";*/
+@import "./service-detail.skeleton.wxss";
 
 .container {
     font-size: 28rpx;

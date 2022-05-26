@@ -16,13 +16,17 @@ Page({
 		isPublisher: false,
 		ratingList: [],
 		serviceTypeEnum: serviceType,
-		serviceStatusEnum: serviceStatus
+		serviceStatusEnum: serviceStatus,
+		loading: true
 	},
 	onLoad: async function (options) {
 		this.data.serviceId = options.service_id
 		await this._getService()
 		await this._getServiceRatingList()
 		this._checkRole()
+		this.setData({
+			loading: false
+		})
 	},
 
 
@@ -34,6 +38,9 @@ Page({
 	},
 
 	async _getServiceRatingList () {
+		if (this.data.service.type === serviceType.SEEK) {
+			return
+		}
 		const ratingList = await rating.reset().getServiceRatingList(this.data.serviceId)
 		this.setData({
 			ratingList
@@ -118,5 +125,17 @@ Page({
 				isPublisher: true
 			})
 		}
+	},
+
+	async onReachBottom () {
+		if (!rating.hasMoreData) {
+			return
+		}
+
+		const ratingList = await rating.getServiceRatingList(this.data.serviceId)
+		this.setData({
+			ratingList
+		})
 	}
+
 });

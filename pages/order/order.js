@@ -1,4 +1,4 @@
-import Order from '../../model/Order'
+import Order from '../../model/order'
 import service from '../../model/service'
 
 Page({
