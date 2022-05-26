@@ -1,6 +1,5 @@
 <view class="action-bar-item">
   <i-button
-    i-button-class="test-button"
     wx:if="{{service.status !== serviceStatusEnum.CANCELED && service.status !== serviceStatus.OFF_SHELVES}}"
     bgColor="#fff"
     shape="semicircle"

@@ -1,5 +1,1 @@
 @import "../index.wxss";
-
-.test-button{
-    background: red !important;
-}
