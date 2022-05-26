@@ -13,7 +13,8 @@ Page({
 		loading: true
 	},
 	onLoad: async function (options) {
-		
+		const res = await wx.login()
+		console.log(res)
 		await this._getServiceList()
 		//	总的入口，执行函数1 执行函数2
 		await this._getCategoryList()
@@ -21,26 +22,26 @@ Page({
 			loading: false
 		})
 	},
-	
-	async _getServiceList() {
+
+	async _getServiceList () {
 		const serviceList = await service.reset().getServiceList(this.data.categoryId, this.data.tabIndex)
 		this.setData({
 			serviceList: serviceList
 		})
 	},
-	
-	async _getCategoryList() {
+
+	async _getCategoryList () {
 		const categoryList = await Category.getCategoryListWithAll();
 		this.setData({
 			categoryList
 		})
 	},
-	
+
 	handleTabChange: throttle(function (event) {
 		this.data.tabIndex = event.detail.index
 		this._getServiceList()
 	}),
-	
+
 	handleCategoryChange: throttle(function (event) {
 		if (this.data.categoryId === event.currentTarget.dataset.id) {
 			return
@@ -48,8 +49,8 @@ Page({
 		this.data.categoryId = event.currentTarget.dataset.id
 		this._getServiceList()
 	}),
-	
-	handleSelectService(event) {
+
+	handleSelectService (event) {
 		const service = event.currentTarget.dataset.service
 		//	1.缓存，存在数据不一致的问题
 		//	2.只传递一个 id，然后跳转的目标页面根据这个 id 发起一个请求获取数据
@@ -57,28 +58,30 @@ Page({
 			url: '/pages/service-detail/service-detail?service_id=' + service.id
 		})
 	},
-	
+
 	/**
 	 * 下拉刷新
 	 */
-	async onPullDownRefresh() {
+	async onPullDownRefresh () {
 		const serviceList = await service.reset().getServiceList()
 		this.setData({
 			serviceList
 		})
 		wx.stopPullDownRefresh()
 	},
-	
+
 	/**
 	 * 上拉触底加载更多
 	 */
-	async onReachBottom() {
+	async onReachBottom () {
 		// 获取下一页的数据并且和当前的数据合并
-		if (!service.hasMoreData) {return}
+		if (!service.hasMoreData) {
+			return
+		}
 		const serviceList = await service.getServiceList(this.categoryId, this.data.tabIndex)
 		this.setData({
 			serviceList
 		})
 	},
-	
+
 });

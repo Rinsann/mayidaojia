@@ -1,15 +1,22 @@
 import APIConfig from '../config/api'
 import exceptionMessage from '../config/exception-message'
 import wxToPromise from './wx'
+import cache from '../enum/cache'
 
 class Http {
 	// url: yminami.com
 	// /token
-	static async request({url, data, method = 'GET'}) {
-		const res = await wxToPromise('request', {url: APIConfig.baseURL + url, data, method})
-		
+	static async request ({url, data, method = 'GET'}) {
+		const res = await wxToPromise('request', {
+			url: APIConfig.baseURL + url,
+			data,
+			method,
+			/* header: {
+			 token: wx.getStorageSync(cache.TOKEN)
+			 } */
+		})
+
 		//	全局统一响应、异常处理
-		//	TODO 请求成功
 		if (res.statusCode < 400) {
 			// callback(res.data.data)
 			return res.data.data
@@ -20,19 +27,26 @@ class Http {
 			return
 		}
 		Http._showError(res.data.error_code, res.data.message)
-		//	接口错误信息，一定要看清楚文档，那些适合直接展示出去，那些不适合
-		
+		const error = Http._generateMessage(res.data.message)
+		throw Error(error)
 	}
-	
-	static _showError(errorCode, message) {
+
+	static _showError (errorCode, message) {
 		let title = ''
 		const errorMessage = exceptionMessage[errorCode]
 		title = errorMessage || message || '未知异常'
-		title = typeof title === 'object' ? Object.values(title).join(';') : title
-		
+
+		title = Http._generateMessage(title)
+
 		wx.showToast({
 			title, icon: 'none', duration: 2000
 		})
+	}
+
+	static _generateMessage (message) {
+		return typeof message === 'object'
+			? Object.values(message).join(';')
+			: message
 	}
 }
 
