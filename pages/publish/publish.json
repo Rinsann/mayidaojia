@@ -1,6 +1,7 @@
 {
-  "navigationBarBackgroundColor": "#f3d066",
-  "navigationBarTitleText": "发布",
-  "usingComponents": {
-  }
+	"navigationBarBackgroundColor": "#f3d066",
+	"navigationBarTitleText": "发布服务",
+	"usingComponents": {
+		"i-service-form": "/components/service-form/service-form"
+	}
 }
